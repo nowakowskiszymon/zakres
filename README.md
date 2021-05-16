@@ -20,6 +20,7 @@ Następnie poprzez określone operacje wylicza określone wartości, takie jak:
 - średnia
 - mediana 
 - dominanta
+
 Ostatnim etapem jest wypisanie wszystkich informacji w terminalu razem z wygenerowanym zakresem liczb.
 
 
