@@ -1,0 +1,70 @@
+using System;
+
+namespace _13
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Random generator = new Random();
+            int[] zestaw = new int[10];
+            int min, max, tmp, dominanta, dlugosc;
+            double suma = 0, mediana;
+
+            for (int i = 0; i < zestaw.Length; i++)
+            {
+                zestaw[i] = generator.Next(1, 11);
+            }
+
+            
+            for (int j = 0; j < zestaw.Length -1; j++)
+                for (int i = 0; i < zestaw.Length - 1; i++)
+                    if (zestaw[i] > zestaw[i+1])
+                    {
+                        tmp = zestaw[0];
+                        zestaw[i] = zestaw[i + 1];
+                        zestaw[i + 1] = tmp;
+                    }
+            foreach (int liczba in zestaw)
+                Console.Write("{0}, ", liczba);
+
+            min = zestaw[0];
+            max = zestaw[zestaw.Length - 1];
+
+            foreach (int liczba in zestaw)
+                suma += liczba;
+
+            if (zestaw.Length % 2 != 0)
+                mediana = zestaw[(zestaw.Length - 1) / 2];
+            else
+                mediana = (double)(zestaw[zestaw.Length / 2 - 1] + zestaw[zestaw.Length / 2]) / 2;
+
+
+            dominanta = zestaw[0];
+            dlugosc = 1;
+                tmp = 1;
+
+            for (int i = 1; i < zestaw.Length; i++)
+                if (zestaw[i] == zestaw[i - 1])
+                    dlugosc++;
+            else
+                {
+                    if (dlugosc > tmp)
+                    {
+                        tmp = dlugosc;
+                        dominanta = zestaw[i - 1];
+                    }
+                    dlugosc = 1;
+                }
+
+           
+            if (dlugosc > tmp)
+            {
+                tmp = dlugosc;
+                dominanta = zestaw[zestaw.Length - 1];
+            }
+
+            Console.WriteLine("\n\nMinimum: {0}\nMaksimum: {1}\nŚrednia: {2}\nMediana: {3}\nDominanta {4}",min, max, suma/zestaw.Length, mediana, dominanta);
+        }
+    }
+}
